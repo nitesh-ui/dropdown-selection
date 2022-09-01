@@ -20,21 +20,25 @@ class SelectValue extends Component {
     }
 
     selectHandler = (event) => {
-        this.setState({ 
-            selectedOption: event.value
-        });
-        console.log('Selected Value:- ' + event.value);
-        if(this.state.selectedOption !== "") {
-            this.setState({
-                prevOption: this.state.selectedOption
-            },() => {
-                if(this.state.prevOption !== "") {
-                    this.setState({
-                        allOption: this.state.prevOption
-                    })
-                }  
-            })
+        if (event.value !== this.state.selectedOption){
+            this.setState({ 
+                selectedOption: event.value
+            });
+            console.log('Selected Value--> ' + event.value);
+            if(this.state.selectedOption !== "") {
+                this.setState({
+                    prevOption: this.state.selectedOption,
+                },() => {
+                    console.log('Previous Value:- ' + this.state.prevOption);
+                    if(this.state.prevOption !== "") {
+                        this.setState({
+                            allOption: this.state.allOption + " " + this.state.prevOption
+                        })
+                    }  console.log('All Value:- ' + this.state.allOption);
+                })
+            }
         }
+        
     }
 
     render() {
