@@ -28,13 +28,17 @@ function Dropdown() {
     const selectHandler = (event) => {
         if (event.value !== selectOption){
             setSelectOption(event.value);
-            console.log("Current Value" + event.value);
+            console.log("Current Value--> " + event.value);
             if(selectOption !== "") {
                 setPrevOption(selectOption);
+                setAllOption(selectOption);
+                console.log("Previous Value--> " + selectOption);
             }
             if(prevOption !== "") {
-                //setAllOption(prevOption + " " +allOption);
-                setAllOption(prevOption + " " + selectOption);
+                //setAllOption(prevOption + " " + allOption);
+                setAllOption(selectOption + " " + allOption);
+                console.log("All Value--> " + selectOption); 
+                console.log("All Value New--> " + prevOption);
             }
         }
         
