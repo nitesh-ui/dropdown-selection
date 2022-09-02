@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Select from 'react-select';
+import Spinner from './Spinner';
 
 let options = [
     {value: "Nitesh",label: "Nitesh"},
@@ -15,36 +16,47 @@ class SelectValue extends Component {
         this.state = {
             selectedOption: '',
             prevOption: '',
-            allOption: ''
+            allOption: '',
+            isLoaded: false
         }
     }
 
     selectHandler = (event) => {
         if (event.value !== this.state.selectedOption){
-            this.setState({ 
-                selectedOption: event.value
-            });
+            setTimeout(() => {
+                this.setState({ 
+                    selectedOption: event.value,
+                    isLoaded: true
+                });
+            }, 1500);
+            
             console.log('Selected Value--> ' + event.value);
             if(this.state.selectedOption !== "") {
-                this.setState({
-                    prevOption: this.state.selectedOption,
-                },() => {
-                    console.log('Previous Value:- ' + this.state.prevOption);
-                    if(this.state.prevOption !== "") {
-                        this.setState({
-                            allOption: this.state.allOption + " " + this.state.prevOption
-                        })
-                    }  console.log('All Value:- ' + this.state.allOption);
-                })
+                setTimeout(() => {
+                    this.setState({
+                        prevOption: this.state.selectedOption,
+                        isLoaded: true
+                    },() => {
+                        console.log('Previous Value:- ' + this.state.prevOption);
+                        if(this.state.prevOption !== "") {
+                            this.setState({
+                                allOption: this.state.allOption + " " + this.state.prevOption,
+                                isLoaded: true
+                            })
+                        }  console.log('All Value:- ' + this.state.allOption);
+                    })
+                }, 1500);
+                
             }
         }
         
     }
 
     render() {
-        const {selectedOption, prevOption,allOption} = this.state;
+        const {selectedOption, prevOption, allOption} = this.state;
         return (
             <div className="container my-3">
+                {this.state.isLoaded && <Spinner/>}
                 <div className="row">
                     <div className="col-md-4">
                         <Select options={options} value={selectedOption.label} onChange={this.selectHandler}/>
