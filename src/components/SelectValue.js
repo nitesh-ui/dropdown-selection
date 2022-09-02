@@ -23,11 +23,13 @@ class SelectValue extends Component {
 
     selectHandler = (event) => {
         if (event.value !== this.state.selectedOption){
+            document.getElementById("overlay").style.display = "block";
             setTimeout(() => {
                 this.setState({ 
                     selectedOption: event.value,
                     isLoaded: true
                 });
+                document.getElementById("overlay").style.display = "none";
             }, 1500);
             
             console.log('Selected Value--> ' + event.value);
@@ -56,6 +58,7 @@ class SelectValue extends Component {
         const {selectedOption, prevOption, allOption} = this.state;
         return (
             <div className="container my-3">
+                <div id="overlay"></div>
                 {this.state.isLoaded && <Spinner/>}
                 <div className="row">
                     <div className="col-md-4">
