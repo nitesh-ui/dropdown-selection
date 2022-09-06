@@ -23,31 +23,41 @@ class SelectValue extends Component {
 
     selectHandler = (event) => {
         if (event.value !== this.state.selectedOption){
-            document.getElementById("overlay").style.display = "block";
+            this.setState({ 
+                selectedOption: event.value,
+                isLoaded: true
+            });
             setTimeout(() => {
                 this.setState({ 
-                    selectedOption: event.value,
-                    isLoaded: true
+                    isLoaded: false
                 });
-                document.getElementById("overlay").style.display = "none";
-            }, 1500);
+            }, 2000);
             
             console.log('Selected Value--> ' + event.value);
             if(this.state.selectedOption !== "") {
+                this.setState({
+                    prevOption: this.state.selectedOption,
+                    isLoaded: true
+                },() => {
+                    console.log('Previous Value:- ' + this.state.prevOption);
+                    if(this.state.prevOption !== "") {
+                        this.setState({
+                            allOption: this.state.allOption + " " + this.state.prevOption,
+                            isLoaded: true
+                        })
+                    }  console.log('All Value:- ' + this.state.allOption);
+                })
                 setTimeout(() => {
                     this.setState({
-                        prevOption: this.state.selectedOption,
-                        isLoaded: true
+                        isLoaded: false
                     },() => {
-                        console.log('Previous Value:- ' + this.state.prevOption);
                         if(this.state.prevOption !== "") {
                             this.setState({
-                                allOption: this.state.allOption + " " + this.state.prevOption,
-                                isLoaded: true
+                                isLoaded: false
                             })
-                        }  console.log('All Value:- ' + this.state.allOption);
+                        }  
                     })
-                }, 1500);
+                }, 2000);
                 
             }
         }
@@ -58,7 +68,7 @@ class SelectValue extends Component {
         const {selectedOption, prevOption, allOption} = this.state;
         return (
             <div className="container my-3">
-                <div id="overlay"></div>
+                {this.state.isLoaded &&<div id="overlay"></div>}
                 {this.state.isLoaded && <Spinner/>}
                 <div className="row">
                     <div className="col-md-4">
