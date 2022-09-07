@@ -27,6 +27,7 @@ class SelectValue extends Component {
                 selectedOption: event.value,
                 isLoaded: true
             });
+
             setTimeout(() => {
                 this.setState({ 
                     isLoaded: false
@@ -47,6 +48,7 @@ class SelectValue extends Component {
                         })
                     }  console.log('All Value:- ' + this.state.allOption);
                 })
+                
                 setTimeout(() => {
                     this.setState({
                         isLoaded: false

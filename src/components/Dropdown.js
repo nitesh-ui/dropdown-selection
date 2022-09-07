@@ -31,15 +31,21 @@ function Dropdown() {
         if (event.value !== selectOption){
             setSelectOption(event.value);
             setLoading(true);
+
             setTimeout(() => {
                 setLoading(false)
             }, 2000);
+
             console.log("Current Value--> " + event.value);
+
             if(selectOption !== "") {
                 setPrevOption(selectOption);
                 setAllOption(selectOption);
+
                 console.log("Previous Value--> " + selectOption);
+
                 setLoading(true);
+
                 setTimeout(() => {
                     setLoading(false)
                 }, 2000);
@@ -47,9 +53,12 @@ function Dropdown() {
             if(prevOption !== "") {
                 //setAllOption(prevOption + " " + allOption);
                 setAllOption(selectOption + " " + allOption);
+
                 console.log("All Value--> " + selectOption); 
                 console.log("All Value New--> " + prevOption);
+
                 setLoading(true);
+                
                 setTimeout(() => {
                     setLoading(false)
                 }, 2000);
