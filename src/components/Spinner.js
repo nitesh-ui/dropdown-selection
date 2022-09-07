@@ -6,8 +6,10 @@ class Spinner extends Component {
     render() {
         return (
             <>
-                <div className="text-center spinner-wrapper">
-                    <img src={loading} alt="loading"/>
+                <div id="overlay">
+                    <div className="text-center spinner-wrapper">
+                        <img src={loading} alt="loading"/>
+                    </div>
                 </div>
             </>
             

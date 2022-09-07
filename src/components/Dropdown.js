@@ -61,7 +61,6 @@ function Dropdown() {
     return (
         <div className="container my-3">
             <div className="row">
-                {isLoading && <div id="overlay"></div>}
                 {isLoading && <Spinner/>}
                 <div className="col-md-4">
                     <Select options={dropdownList} onChange={selectHandler}/>

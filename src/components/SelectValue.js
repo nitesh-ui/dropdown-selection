@@ -68,7 +68,6 @@ class SelectValue extends Component {
         const {selectedOption, prevOption, allOption} = this.state;
         return (
             <div className="container my-3">
-                {this.state.isLoaded &&<div id="overlay"></div>}
                 {this.state.isLoaded && <Spinner/>}
                 <div className="row">
                     <div className="col-md-4">
