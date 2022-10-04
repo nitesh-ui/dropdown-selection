@@ -93,6 +93,9 @@ class SelectValue extends Component {
                         </div>
                     </div>
                 </div>
+                <hr/>
+                <hr/>
+                <hr/>
             </div>
         )
     }
