@@ -51,8 +51,8 @@ class App extends Component {
   }
 
   componentDidMount() {
-    this.subscription = observable.subscribe(() => {
-      this.setState({ averageNumber: observer.next });
+    this.subscription = observable.subscribe((x) => {
+      this.setState({ averageNumber: observer.next(x) });
     });
   }
 
