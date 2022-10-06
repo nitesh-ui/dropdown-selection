@@ -1,5 +1,5 @@
 import { Component } from "react";
-import "./styles.css";
+// import "./styles.css";
 import { Observable } from "rxjs";
 import { map, filter } from "rxjs/operators";
 
@@ -33,16 +33,11 @@ let observable = new Observable((subscriber) => {
     if (average < 18) throw new Error(`Average age is too small (${average})`);
     else return average;
   }),
-  map((average) => `The average age is ${average}`)
+  map((average) => average)
 );
 
-let observer = {
-  next: (x) => console.log("Observer got a next value: " + x),
-  error: (err) => console.error("Observer got an error: " + err),
-  complete: () => console.log("Observer got a complete notification")
-};
 
-class App extends Component {
+class RxjsFunctionObject extends Component {
   constructor() {
     super();
     this.state = {
@@ -50,11 +45,17 @@ class App extends Component {
     };
   }
 
+
   componentDidMount() {
-    this.subscription = observable.subscribe((x) => {
-      this.setState({ averageNumber: observer.next(x) });
-    });
+    this.subscription = observable.subscribe( {
+        next: (x) => {
+          this.setState({averageNumber:x})
+        },
+        error: (err) => console.error("Observer got an error: " + err),
+        complete: () => console.log("Observer got a complete notification")
+      });
   }
+
 
   componentWillUnmount() {
     this.subscription.unsubscribe();
@@ -69,4 +70,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default RxjsFunctionObject;
